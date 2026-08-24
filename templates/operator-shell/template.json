@@ -1,0 +1,30 @@
+{
+  "id": "operator-shell",
+  "name": "Operator Shell",
+  "version": "1.0.0",
+  "type": "layout-shell",
+  "description": "Guscio HMI con barra superiore, stati macchina, navigazione laterale e area contenuti vuota.",
+  "entry": "src/OperatorShellTemplate.jsx",
+  "preview": "src/App.jsx",
+  "reference": "reference/operator-shell.png",
+  "slots": [
+    {
+      "id": "content",
+      "prop": "children",
+      "description": "Area centrale destinata alle pagine generate dall'AI."
+    }
+  ],
+  "inputs": {
+    "navigationItems": "Array<{ id, label, icon, color }>",
+    "machineStates": "Array<{ id, label, warning, safety, mode, state }>",
+    "connection": "{ connected, level }",
+    "userName": "string",
+    "initialSection": "string",
+    "onSectionChange": "(sectionId) => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css",
+    "src/App.jsx"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "templates": [
+    {
+      "id": "operator-shell",
+      "name": "Operator Shell",
+      "version": "1.0.0",
+      "type": "layout-shell",
+      "path": "templates/operator-shell",
+      "manifest": "templates/operator-shell/template.json"
+    }
+  ]
+}

@@ -31,18 +31,23 @@ export default function MachineView() {
         >
           <g className="machine-zone-geometry" aria-hidden="true">
             <path
-              className="machine-zone-conveyor"
+              className="machine-zone-area"
               vectorEffect="non-scaling-stroke"
-              d="M154 592
-                 L158 486
-                 C159 449 177 428 214 410
-                 L348 329
-                 C391 304 437 293 483 278
-                 L512 266
-                 C530 258 547 260 566 271
-                 L625 318
-                 C651 339 675 357 700 357
-                 C716 357 730 351 747 343"
+              d="M88 408
+                 L510 232
+                 L688 344
+                 L748 316
+                 L748 382
+                 L684 405
+                 L512 300
+                 L372 349
+                 L374 454
+                 L445 494
+                 L530 619
+                 L530 680
+                 L302 758
+                 L84 638
+                 Z"
             />
           </g>
 
@@ -50,7 +55,7 @@ export default function MachineView() {
             className={`machine-hotspot ${unscramblerActive ? "is-active" : ""}`}
             role="button"
             tabIndex="0"
-            aria-label="Unscrambler sinistro"
+            aria-label="Zona Unscramblers Conveyor"
             aria-pressed={unscramblerActive}
             onClick={toggleUnscrambler}
             onKeyDown={(event) => {
@@ -60,15 +65,15 @@ export default function MachineView() {
               }
             }}
           >
-            <circle className="machine-hotspot-hit" cx="120" cy="653" r="45" />
-            <circle className="machine-hotspot-ring" cx="120" cy="653" r="25" />
-            <circle className="machine-hotspot-core" cx="120" cy="653" r="16" />
+            <circle className="machine-hotspot-hit" cx="220" cy="565" r="45" />
+            <circle className="machine-hotspot-ring" cx="220" cy="565" r="25" />
+            <circle className="machine-hotspot-core" cx="220" cy="565" r="16" />
           </g>
         </svg>
 
         <div className="machine-zone-hint" aria-live="polite">
           <span className={unscramblerActive ? "is-active" : ""} />
-          {unscramblerActive ? "Unscrambler Lids Conveyor selected" : "Select a machine zone"}
+          {unscramblerActive ? "Unscramblers Conveyor selected" : "Select a machine zone"}
         </div>
       </div>
 

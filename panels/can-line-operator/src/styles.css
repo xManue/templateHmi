@@ -116,9 +116,9 @@
   opacity: 1;
 }
 
-.machine-zone-conveyor {
-  fill: none;
-  stroke: #00c82d;
+.machine-zone-area {
+  fill: rgba(49, 224, 70, .14);
+  stroke: #00e629;
   stroke-width: 4px;
   stroke-linecap: round;
   stroke-linejoin: round;

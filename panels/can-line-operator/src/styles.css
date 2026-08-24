@@ -105,30 +105,23 @@
   pointer-events: none;
 }
 
-.machine-zone-path-shadow,
-.machine-zone-path {
+.machine-zone-geometry {
   fill: none;
   opacity: 0;
-  stroke-linecap: round;
-  stroke-linejoin: round;
   pointer-events: none;
   transition: opacity .18s ease;
 }
 
-.machine-zone-path-shadow {
-  stroke: rgba(0, 0, 0, .82);
-  stroke-width: 13px;
-}
-
-.machine-zone-path {
-  stroke: #00d737;
-  stroke-width: 8px;
-  filter: drop-shadow(0 0 3px rgba(0, 215, 55, .78));
-}
-
-.has-active-zone .machine-zone-path-shadow,
-.has-active-zone .machine-zone-path {
+.has-active-zone .machine-zone-geometry {
   opacity: 1;
+}
+
+.machine-zone-outline {
+  fill: none;
+  stroke: #00c82d;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .machine-hotspot {

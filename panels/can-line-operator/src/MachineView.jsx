@@ -21,7 +21,12 @@ export default function MachineView() {
       <h1 id="machine-view-title" className="visually-hidden">Machine View</h1>
 
       <div className={`machine-stage ${unscramblerActive ? "has-active-zone" : ""}`}>
-        <img src="/machine-line.png" alt="Vista completa della linea automatica" />
+        <img
+          src="/machine-line.png"
+          alt="Vista completa della linea automatica"
+          draggable={false}
+          onDragStart={(event) => event.preventDefault()}
+        />
 
         <svg
           className="machine-zone-map"
@@ -29,6 +34,11 @@ export default function MachineView() {
           preserveAspectRatio="xMidYMid meet"
           aria-label="Zone interattive della macchina"
         >
+          <g className="machine-zone-title" aria-hidden="true">
+            <text x="165" y="215">Unscramblers Conveyor</text>
+            <line x1="160" y1="226" x2="400" y2="226" />
+          </g>
+
           <g className="machine-zone-geometry" aria-hidden="true">
             <path
               className="machine-zone-area"

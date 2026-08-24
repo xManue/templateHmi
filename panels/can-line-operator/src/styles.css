@@ -79,6 +79,8 @@
   position: relative;
   min-height: 0;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
   border: 1px solid #4a4e54;
   border-radius: 6px;
   background:
@@ -93,6 +95,8 @@
   height: 100%;
   display: block;
   object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .machine-zone-map {
@@ -103,6 +107,22 @@
   height: 100%;
   overflow: visible;
   pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.machine-zone-title {
+  fill: #8f9499;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  pointer-events: none;
+}
+
+.machine-zone-title line {
+  stroke: #b8bdc1;
+  stroke-width: 1.5px;
 }
 
 .machine-zone-geometry {
@@ -129,6 +149,10 @@
   cursor: pointer;
   pointer-events: auto;
   outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .machine-hotspot-hit {

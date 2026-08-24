@@ -19,7 +19,7 @@
     {
       "id": "operator-shell-main-menu",
       "name": "Operator Shell Main Menu",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "type": "navigation-popup",
       "path": "templates/operator-shell/linked/main-menu-popup",
       "manifest": "templates/operator-shell/linked/main-menu-popup/template.json",
@@ -31,6 +31,10 @@
           {
             "itemId": "counter-machine",
             "targetTemplateId": "machine-counters"
+          },
+          {
+            "itemId": "consumption",
+            "targetTemplateId": "consumption"
           }
         ]
       }
@@ -45,6 +49,18 @@
       "relationship": {
         "mode": "standalone",
         "linkedFrom": ["operator-shell-main-menu:counter-machine"]
+      }
+    },
+    {
+      "id": "consumption",
+      "name": "Consumption",
+      "version": "1.0.0",
+      "type": "page",
+      "path": "templates/consumption",
+      "manifest": "templates/consumption/template.json",
+      "relationship": {
+        "mode": "standalone",
+        "linkedFrom": ["operator-shell-main-menu:consumption"]
       }
     },
     {

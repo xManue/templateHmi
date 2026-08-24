@@ -9,6 +9,8 @@
     "build:alarm-list": "pnpm --filter hmi-alarm-list-template build",
     "dev:machine-counters": "pnpm --filter hmi-machine-counters-template dev",
     "build:machine-counters": "pnpm --filter hmi-machine-counters-template build",
+    "dev:consumption": "pnpm --filter hmi-consumption-template dev",
+    "build:consumption": "pnpm --filter hmi-consumption-template build",
     "dev:can-line": "pnpm --filter hmi-can-line-operator-panel dev",
     "build:can-line": "pnpm --filter hmi-can-line-operator-panel build",
     "build": "pnpm -r build"

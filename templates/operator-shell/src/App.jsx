@@ -19,6 +19,12 @@ import {
   machineCounterVariables,
   rejectionReasons,
 } from "../../machine-counters/src/templateData";
+import ConsumptionTemplate from "../../consumption/src/ConsumptionTemplate";
+import {
+  airSection,
+  consumptionVariables,
+  powerSection,
+} from "../../consumption/src/templateData";
 
 export default function App() {
   const [alarmMode, setAlarmMode] = useState(null);
@@ -49,6 +55,12 @@ export default function App() {
           diagnostics={diagnostics}
           rejectionReasons={rejectionReasons}
           initialLastRejectedBundles={machineCounterVariables.initialLastRejectedBundles}
+        />
+      ) : mainPage === "consumption" ? (
+        <ConsumptionTemplate
+          title={consumptionVariables.title}
+          air={airSection}
+          power={powerSection}
         />
       ) : alarmMode ? (
         <AlarmListTemplate

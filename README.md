@@ -31,6 +31,7 @@ pnpm install
 pnpm run dev:operator-shell
 pnpm run dev:alarm-list
 pnpm run dev:machine-counters
+pnpm run dev:consumption
 ```
 
 ## Aggiunta di un template
@@ -42,9 +43,11 @@ Creare una nuova cartella in `templates/`, aggiungere il relativo `template.json
 - `operator-shell`: guscio principale con header e navigazione;
 - `alarm-list`: pagina allarmi con selezione unità e callback di aggiornamento.
 - `machine-counters`: contatori macchina e dettagli degli scarti di ispezione.
+- `consumption`: consumi di aria e misure elettriche della macchina.
 
 ## Pannelli generati
 
 - `panels/can-line-operator`: pannello operatore completo che compone
-  `operator-shell`, i relativi popup e `alarm-list`. Include le pagine Machine
-  View, Counter Machine e Manual General con il layout macchina fornito.
+  `operator-shell`, i relativi popup e i template di pagina. Include le pagine
+  Machine View, Counter Machine, Consumption e Manual General con il layout
+  macchina fornito.

@@ -22,6 +22,12 @@ import {
   machineCounterVariables,
   rejectionReasons,
 } from "../../../templates/machine-counters/src/templateData";
+import ConsumptionTemplate from "../../../templates/consumption/src/ConsumptionTemplate";
+import {
+  airSection,
+  consumptionVariables,
+  powerSection,
+} from "../../../templates/consumption/src/templateData";
 
 const directPages = {
   settings: ["Settings", "Parametri macchina e configurazione ricette"],
@@ -70,6 +76,15 @@ function PanelPage({ page }) {
         diagnostics={diagnostics}
         rejectionReasons={rejectionReasons}
         initialLastRejectedBundles={machineCounterVariables.initialLastRejectedBundles}
+      />
+    );
+  }
+  if (page === "consumption") {
+    return (
+      <ConsumptionTemplate
+        title={consumptionVariables.title}
+        air={airSection}
+        power={powerSection}
       />
     );
   }

@@ -1,0 +1,21 @@
+{
+  "id": "consumption",
+  "name": "Consumption",
+  "version": "1.0.0",
+  "type": "page",
+  "description": "Pagina HMI per il monitoraggio dei consumi di aria, tensione, corrente, potenza e ore operative.",
+  "entry": "src/ConsumptionTemplate.jsx",
+  "preview": "src/App.jsx",
+  "reference": "reference/consumption.png",
+  "compatibleWith": ["operator-shell"],
+  "inputs": {
+    "title": "string",
+    "air": "{ title, metrics: Array<{ id, label, value, unit, warning }> }",
+    "power": "{ title, metrics: Array<{ id, label, value, unit, warning }> }"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css",
+    "src/App.jsx"
+  ]
+}

@@ -1,0 +1,226 @@
+.consumption-page,
+.consumption-page * {
+  box-sizing: border-box;
+}
+
+.consumption-page {
+  --frame: #d1d1d1;
+  --surface: #fdfdfd;
+  --line: #d0d4d6;
+  --text: #363636;
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  display: grid;
+  grid-template-rows: 51px minmax(0, 1fr);
+  gap: 6px;
+  padding: 14px 10px 20px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--frame);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.consumption-title {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 21px;
+  border-radius: 11px;
+  background: var(--surface);
+}
+
+.consumption-title h1,
+.consumption-panel-heading h2 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.consumption-title h1 {
+  font-size: 19px;
+}
+
+.consumption-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.consumption-panel {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.consumption-air-panel {
+  align-self: start;
+}
+
+.consumption-power-panel {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 54px minmax(0, 1fr);
+}
+
+.consumption-panel-heading {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-bottom: 3px solid var(--line);
+  text-align: center;
+}
+
+.consumption-panel-heading h2 {
+  font-size: 18px;
+}
+
+.consumption-metrics {
+  min-width: 0;
+  margin: 0;
+}
+
+.consumption-air-panel .consumption-metrics {
+  height: 63px;
+}
+
+.consumption-power-panel .consumption-metrics {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(10, minmax(0, 1fr));
+}
+
+.consumption-metric-row {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: max-content 148px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 6px 16px;
+  border-bottom: 3px solid var(--line);
+}
+
+.consumption-metric-row:last-child {
+  border-bottom: 0;
+}
+
+.consumption-metric-row dt {
+  max-width: 310px;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.consumption-metric-row dd {
+  min-width: 0;
+  margin: 0;
+}
+
+.consumption-output {
+  position: relative;
+  width: 148px;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  overflow: hidden;
+  border: 1px solid #9b9b9b;
+  border-radius: 2px;
+  background-color: #c8c8c8;
+  background-image:
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 22%) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgb(55 55 55 / 16%) 0 1px, transparent 1px 3px),
+    linear-gradient(#d6d6d6, #b7b7b7);
+  box-shadow:
+    inset 0 1px 1px rgb(255 255 255 / 75%),
+    inset 0 -1px 1px rgb(65 65 65 / 22%);
+  color: #111;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.consumption-output-value,
+.consumption-output-unit {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+}
+
+.consumption-output-unit {
+  margin-left: 4px;
+}
+
+.consumption-output svg {
+  position: absolute;
+  right: 17px;
+  z-index: 0;
+  color: #dfb62e;
+  fill: rgb(255 220 83 / 28%);
+  opacity: .55;
+}
+
+@media (max-width: 900px) {
+  .consumption-page {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+
+  .consumption-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consumption-power-panel {
+    min-height: 720px;
+  }
+}
+
+@media (max-width: 520px) {
+  .consumption-page {
+    grid-template-rows: 51px auto;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .consumption-metric-row {
+    grid-template-columns: minmax(0, 1fr) 118px;
+    gap: 8px;
+    padding-inline: 10px;
+  }
+
+  .consumption-metric-row dt {
+    max-width: none;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    font-size: 14px;
+  }
+
+  .consumption-output {
+    width: 118px;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .consumption-output svg {
+    right: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consumption-page *,
+  .consumption-page *::before,
+  .consumption-page *::after {
+    transition-duration: .01ms !important;
+  }
+}

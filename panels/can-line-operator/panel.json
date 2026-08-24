@@ -1,7 +1,7 @@
 {
   "id": "can-line-operator",
   "name": "Can Line Operator Panel",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Pannello operatore completo per linea handling con vista macchina, comandi manuali e gestione allarmi.",
   "entry": "src/App.jsx",
   "asset": "public/machine-line.png",
@@ -11,11 +11,13 @@
     "operator-shell-alarms-menu",
     "operator-shell-manuals-menu",
     "alarm-list",
-    "machine-counters"
+    "machine-counters",
+    "consumption"
   ],
   "pages": [
     "machine-view",
     "counter-machine",
+    "consumption",
     "manual-general",
     "alarms",
     "history",

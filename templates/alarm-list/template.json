@@ -1,0 +1,26 @@
+{
+  "id": "alarm-list",
+  "name": "Alarm List",
+  "version": "1.0.0",
+  "type": "page",
+  "description": "Pagina HMI industriale per consultare gli allarmi e filtrare rapidamente le unità UN01-UN12.",
+  "entry": "src/AlarmListTemplate.jsx",
+  "preview": "src/App.jsx",
+  "reference": "reference/alarm-list.png",
+  "compatibleWith": ["operator-shell"],
+  "inputs": {
+    "title": "string",
+    "alarms": "Array<{ id, category, text, time, unitName }>",
+    "units": "string[]",
+    "activeUnit": "string | undefined",
+    "initialActiveUnit": "string",
+    "visibleRows": "number",
+    "onRefresh": "(unitId) => void",
+    "onUnitChange": "(unitId) => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css",
+    "src/App.jsx"
+  ]
+}

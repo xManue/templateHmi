@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev:operator-shell": "pnpm --filter hmi-operator-shell-template dev",
-    "build:operator-shell": "pnpm --filter hmi-operator-shell-template build"
+    "build:operator-shell": "pnpm --filter hmi-operator-shell-template build",
+    "dev:alarm-list": "pnpm --filter hmi-alarm-list-template dev",
+    "build:alarm-list": "pnpm --filter hmi-alarm-list-template build",
+    "build": "pnpm -r build"
   }
 }

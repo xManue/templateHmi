@@ -7,6 +7,14 @@
       "type": "layout-shell",
       "path": "templates/operator-shell",
       "manifest": "templates/operator-shell/template.json"
+    },
+    {
+      "id": "alarm-list",
+      "name": "Alarm List",
+      "version": "1.0.0",
+      "type": "page",
+      "path": "templates/alarm-list",
+      "manifest": "templates/alarm-list/template.json"
     }
   ]
 }

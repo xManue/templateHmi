@@ -2,6 +2,10 @@
 
 Catalogo dei template React utilizzabili dal generatore AI di pannelli operatore.
 
+I nuovi template devono riprendere il linguaggio visivo del catalogo: fondo nero,
+superfici grigio antracite, testi ad alto contrasto, controlli grandi e geometrie
+industriali. Lo screenshot incluso in ogni cartella rimane la fonte visiva primaria.
+
 Ogni cartella dentro `templates/` contiene:
 
 - `template.json`: contratto leggibile dall'AI;
@@ -18,8 +22,14 @@ Ogni cartella dentro `templates/` contiene:
 cd C:\Users\m.negrini\Desktop\templateHmi
 pnpm install
 pnpm run dev:operator-shell
+pnpm run dev:alarm-list
 ```
 
 ## Aggiunta di un template
 
 Creare una nuova cartella in `templates/`, aggiungere il relativo `template.json` e registrarla in `templates/index.json`.
+
+## Template disponibili
+
+- `operator-shell`: guscio principale con header e navigazione;
+- `alarm-list`: pagina allarmi con selezione unità e callback di aggiornamento.

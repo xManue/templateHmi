@@ -1,7 +1,7 @@
 {
   "id": "operator-shell",
   "name": "Operator Shell",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "layout-shell",
   "description": "Guscio HMI con barra superiore, stati macchina, navigazione laterale e area contenuti vuota.",
   "entry": "src/OperatorShellTemplate.jsx",
@@ -22,13 +22,21 @@
     "initialSection": "string",
     "onSectionChange": "(sectionId) => void",
     "mainMenuItems": "Array<{ id, label, icon }>",
-    "onMainMenuItemSelect": "(itemId) => void"
+    "onMainMenuItemSelect": "(itemId) => void",
+    "alarmMenuItems": "Array<{ id, label, icon }>",
+    "onAlarmMenuItemSelect": "(mode) => void"
   },
   "linkedTemplates": [
     {
       "id": "operator-shell-main-menu",
       "path": "linked/main-menu-popup",
       "trigger": "navigation:main"
+    },
+    {
+      "id": "operator-shell-alarms-menu",
+      "path": "linked/alarms-menu-popup",
+      "trigger": "navigation:alarms",
+      "targetTemplateId": "alarm-list"
     }
   ],
   "editableFiles": [
@@ -36,6 +44,8 @@
     "src/styles.css",
     "src/App.jsx",
     "linked/main-menu-popup/src/templateData.js",
-    "linked/main-menu-popup/src/styles.css"
+    "linked/main-menu-popup/src/styles.css",
+    "linked/alarms-menu-popup/src/templateData.js",
+    "linked/alarms-menu-popup/src/styles.css"
   ]
 }

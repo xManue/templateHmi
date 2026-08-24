@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./styles.css";
 
 const fallbackUnits = Array.from(
   { length: 12 },
@@ -6,8 +7,11 @@ const fallbackUnits = Array.from(
 );
 
 export default function AlarmListTemplate({
-  title = "Alarm",
+  mode = "alarms",
+  title,
+  refreshLabel,
   alarms = [],
+  history = [],
   units = fallbackUnits,
   activeUnit,
   initialActiveUnit = units[0],
@@ -17,6 +21,10 @@ export default function AlarmListTemplate({
 }) {
   const [internalUnit, setInternalUnit] = useState(initialActiveUnit);
   const selectedUnit = activeUnit ?? internalUnit;
+  const historyMode = mode === "history";
+  const resolvedTitle = title ?? (historyMode ? "History" : "Alarm");
+  const resolvedRefreshLabel = refreshLabel ?? (historyMode ? "Refresh History" : "Refresh Alarms");
+  const records = historyMode ? history : alarms;
   const rowNumbers = Array.from({ length: visibleRows }, (_, index) => index + 1);
 
   function selectUnit(unit) {
@@ -26,11 +34,11 @@ export default function AlarmListTemplate({
 
   return (
     <div className="hmi-alarm-page">
-      <section className="alarm-panel" aria-label={title}>
+      <section className="alarm-panel" aria-label={resolvedTitle}>
         <header className="alarm-toolbar">
-          <h1>{title}</h1>
-          <button type="button" className="refresh-button" onClick={() => onRefresh?.(selectedUnit)}>
-            Refresh Alarms
+          <h1>{resolvedTitle}</h1>
+          <button type="button" className="refresh-button" onClick={() => onRefresh?.(selectedUnit, mode)}>
+            {resolvedRefreshLabel}
           </button>
         </header>
 
@@ -53,7 +61,7 @@ export default function AlarmListTemplate({
               {rowNumbers.map((number) => <span key={number}>{number}</span>)}
             </div>
             <div className="alarm-data">
-              {alarms.slice(0, visibleRows).map((alarm) => (
+              {records.slice(0, visibleRows).map((alarm) => (
                 <div className="alarm-data-row" role="row" key={alarm.id}>
                   <span role="cell">{alarm.id}</span>
                   <span role="cell">{alarm.category}</span>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AlarmListTemplate from "./AlarmListTemplate";
-import { alarms, units } from "./templateData";
+import { alarmListCopy, alarmListVariables, alarms, history, units } from "./templateData";
 
 export default function App() {
   const [activeUnit, setActiveUnit] = useState(units[0]);
@@ -12,9 +12,14 @@ export default function App() {
 
   return (
     <AlarmListTemplate
+      mode="alarms"
+      title={alarmListCopy.alarms.title}
+      refreshLabel={alarmListCopy.alarms.refreshLabel}
       alarms={alarms}
+      history={history}
       units={units}
       activeUnit={activeUnit}
+      visibleRows={alarmListVariables.visibleRows}
       onUnitChange={setActiveUnit}
       onRefresh={refreshAlarms}
     />

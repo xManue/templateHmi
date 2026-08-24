@@ -15,6 +15,7 @@
     "id": "string",
     "items": "Array<{ id, label, icon }>",
     "open": "boolean",
+    "anchorY": "number | undefined",
     "onSelect": "(item) => void"
   },
   "editableFiles": [

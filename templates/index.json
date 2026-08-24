@@ -3,13 +3,16 @@
     {
       "id": "operator-shell",
       "name": "Operator Shell",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "type": "layout-shell",
       "path": "templates/operator-shell",
       "manifest": "templates/operator-shell/template.json",
       "relationship": {
         "mode": "base",
-        "linkedTemplates": ["operator-shell-main-menu"]
+        "linkedTemplates": [
+          "operator-shell-main-menu",
+          "operator-shell-alarms-menu"
+        ]
       }
     },
     {
@@ -26,14 +29,29 @@
       }
     },
     {
+      "id": "operator-shell-alarms-menu",
+      "name": "Operator Shell Alarms Menu",
+      "version": "1.0.0",
+      "type": "navigation-popup",
+      "path": "templates/operator-shell/linked/alarms-menu-popup",
+      "manifest": "templates/operator-shell/linked/alarms-menu-popup/template.json",
+      "relationship": {
+        "mode": "linked",
+        "parentTemplateId": "operator-shell",
+        "trigger": "navigation:alarms",
+        "targetTemplateId": "alarm-list"
+      }
+    },
+    {
       "id": "alarm-list",
       "name": "Alarm List",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "type": "page",
       "path": "templates/alarm-list",
       "manifest": "templates/alarm-list/template.json",
       "relationship": {
-        "mode": "standalone"
+        "mode": "standalone",
+        "linkedFrom": ["operator-shell-alarms-menu"]
       }
     }
   ]

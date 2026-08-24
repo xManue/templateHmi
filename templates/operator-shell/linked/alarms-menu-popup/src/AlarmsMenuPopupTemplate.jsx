@@ -1,27 +1,14 @@
 import React from "react";
-import {
-  Cable,
-  ChartLine,
-  ChartNoAxesCombined,
-  Monitor,
-  Network,
-  ScanSearch,
-  Star,
-} from "lucide-react";
+import { History, TriangleAlert } from "lucide-react";
 import "./styles.css";
 
 const icons = {
-  "machine-view": Monitor,
-  "counter-machine": ScanSearch,
-  "special-function": Star,
-  interlocks: Cable,
-  omac: ChartNoAxesCombined,
-  consumption: ChartLine,
-  "connection-status": Network,
+  alarm: TriangleAlert,
+  history: History,
 };
 
-export default function MainMenuPopupTemplate({
-  id = "main-menu-popup",
+export default function AlarmsMenuPopupTemplate({
+  id = "alarms-menu-popup",
   items = [],
   open = true,
   anchorY,
@@ -32,16 +19,16 @@ export default function MainMenuPopupTemplate({
   return (
     <nav
       id={id}
-      className="main-menu-popup"
+      className="alarms-menu-popup"
       style={anchorY == null ? undefined : { "--popup-anchor-y": `${anchorY}px` }}
-      aria-label="Menu Main"
+      aria-label="Menu Alarms"
     >
       {items.map((item, index) => {
-        const Icon = icons[item.icon] ?? Monitor;
+        const Icon = icons[item.icon] ?? TriangleAlert;
         return (
           <button
             type="button"
-            className="main-menu-popup-item"
+            className="alarms-menu-popup-item"
             onClick={() => onSelect?.(item)}
             autoFocus={index === 0}
             key={item.id}

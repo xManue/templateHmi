@@ -13,6 +13,7 @@ import {
   Wrench,
 } from "lucide-react";
 import MainMenuPopupTemplate from "../linked/main-menu-popup/src/MainMenuPopupTemplate";
+import AlarmsMenuPopupTemplate from "../linked/alarms-menu-popup/src/AlarmsMenuPopupTemplate";
 
 const icons = {
   home: Home,
@@ -33,12 +34,17 @@ export default function OperatorShellTemplate({
   onSectionChange,
   mainMenuItems = [],
   onMainMenuItemSelect,
+  alarmMenuItems = [],
+  onAlarmMenuItemSelect,
   children,
 }) {
   const [activeSection, setActiveSection] = useState(initialSection);
-  const [mainMenuOpen, setMainMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [popupAnchorY, setPopupAnchorY] = useState(null);
   const [now, setNow] = useState(new Date());
+  const shellRef = useRef(null);
   const mainMenuButtonRef = useRef(null);
+  const alarmsMenuButtonRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
@@ -46,45 +52,61 @@ export default function OperatorShellTemplate({
   }, []);
 
   useEffect(() => {
-    if (!mainMenuOpen) return undefined;
+    if (!openMenu) return undefined;
 
     function closeOnEscape(event) {
       if (event.key === "Escape") {
-        setMainMenuOpen(false);
-        window.requestAnimationFrame(() => mainMenuButtonRef.current?.focus());
+        const trigger = openMenu === "main" ? mainMenuButtonRef : alarmsMenuButtonRef;
+        setOpenMenu(null);
+        window.requestAnimationFrame(() => trigger.current?.focus());
       }
     }
 
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [mainMenuOpen]);
+  }, [openMenu]);
 
   const statusColumns = useMemo(() => {
     const midpoint = Math.ceil(machineStates.length / 2);
     return [machineStates.slice(0, midpoint), machineStates.slice(midpoint)];
   }, [machineStates]);
 
-  function selectSection(item) {
-    if (item.id === "main" && mainMenuItems.length > 0) {
+  function selectSection(item, triggerElement) {
+    const linkedItems = item.id === "main"
+      ? mainMenuItems
+      : item.id === "alarms"
+        ? alarmMenuItems
+        : [];
+
+    if (linkedItems.length > 0) {
+      const shellBox = shellRef.current?.getBoundingClientRect();
+      const triggerBox = triggerElement.getBoundingClientRect();
       setActiveSection(item.id);
-      setMainMenuOpen((open) => !open);
+      setPopupAnchorY(triggerBox.top - (shellBox?.top ?? 0) + triggerBox.height / 2);
+      setOpenMenu((current) => current === item.id ? null : item.id);
       onSectionChange?.(item.id);
       return;
     }
 
     setActiveSection(item.id);
-    setMainMenuOpen(false);
+    setOpenMenu(null);
     onSectionChange?.(item.id);
   }
 
   function selectMainMenuItem(item) {
-    setMainMenuOpen(false);
+    setOpenMenu(null);
     window.requestAnimationFrame(() => mainMenuButtonRef.current?.focus());
     onMainMenuItemSelect?.(item.id);
   }
 
+  function selectAlarmMenuItem(item) {
+    setOpenMenu(null);
+    window.requestAnimationFrame(() => alarmsMenuButtonRef.current?.focus());
+    onAlarmMenuItemSelect?.(item.id);
+  }
+
   return (
-    <div className="operator-shell">
+    <div className="operator-shell" ref={shellRef}>
       <header className="top-bar">
         <IdentityPanel now={now} connection={connection} userName={userName} />
 
@@ -107,13 +129,25 @@ export default function OperatorShellTemplate({
           return (
             <button
               type="button"
-              ref={item.id === "main" ? mainMenuButtonRef : undefined}
+              ref={item.id === "main"
+                ? mainMenuButtonRef
+                : item.id === "alarms"
+                  ? alarmsMenuButtonRef
+                  : undefined}
               className={`side-link ${active ? "active" : ""}`}
               style={{ "--item-color": item.color }}
               aria-current={active ? "page" : undefined}
-              aria-expanded={item.id === "main" ? mainMenuOpen : undefined}
-              aria-controls={item.id === "main" && mainMenuItems.length > 0 ? "operator-shell-main-menu" : undefined}
-              onClick={() => selectSection(item)}
+              aria-expanded={item.id === "main" && mainMenuItems.length > 0
+                ? openMenu === "main"
+                : item.id === "alarms" && alarmMenuItems.length > 0
+                  ? openMenu === "alarms"
+                  : undefined}
+              aria-controls={item.id === "main" && mainMenuItems.length > 0
+                ? "operator-shell-main-menu"
+                : item.id === "alarms" && alarmMenuItems.length > 0
+                  ? "operator-shell-alarms-menu"
+                  : undefined}
+              onClick={(event) => selectSection(item, event.currentTarget)}
               key={item.id}
             >
               <span className="side-link-icon"><Icon aria-hidden="true" /></span>
@@ -126,8 +160,17 @@ export default function OperatorShellTemplate({
       <MainMenuPopupTemplate
         id="operator-shell-main-menu"
         items={mainMenuItems}
-        open={mainMenuOpen}
+        open={openMenu === "main"}
+        anchorY={popupAnchorY}
         onSelect={selectMainMenuItem}
+      />
+
+      <AlarmsMenuPopupTemplate
+        id="operator-shell-alarms-menu"
+        items={alarmMenuItems}
+        open={openMenu === "alarms"}
+        anchorY={popupAnchorY}
+        onSelect={selectAlarmMenuItem}
       />
 
       <main className="page-slot" aria-label="Area contenuti pagina">

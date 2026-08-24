@@ -1,18 +1,18 @@
-.main-menu-popup {
+.alarms-menu-popup {
   position: absolute;
   z-index: 30;
-  top: calc(var(--popup-anchor-y, 230px) - 55px);
+  top: calc(var(--popup-anchor-y, 400px) - 55px);
   left: calc(var(--side-bar-width) + 10px);
-  width: 262px;
+  width: 264px;
   overflow: visible;
-  padding: 3px 11px 0 20px;
+  padding: 0 12px 0 20px;
   border-radius: 10px;
   background: rgba(215, 215, 215, .98);
   box-shadow: 0 14px 34px rgba(0, 0, 0, .3);
   color: #292b32;
 }
 
-.main-menu-popup::before {
+.alarms-menu-popup::before {
   content: "";
   position: absolute;
   top: 37px;
@@ -24,13 +24,13 @@
   border-bottom: 18px solid transparent;
 }
 
-.main-menu-popup-item {
+.alarms-menu-popup-item {
   width: 100%;
-  min-height: 51px;
+  min-height: 55px;
   display: grid;
   grid-template-columns: 31px minmax(0, 1fr);
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   padding: 0;
   border: 0;
   border-bottom: 2px solid rgba(40, 42, 48, .06);
@@ -44,56 +44,51 @@
   transition: background-color .18s ease, color .18s ease;
 }
 
-.main-menu-popup-item:last-child {
+.alarms-menu-popup-item:last-child {
   border-bottom: 0;
 }
 
-.main-menu-popup-item:hover {
+.alarms-menu-popup-item:hover {
   background: rgba(255, 255, 255, .32);
   color: #080b13;
 }
 
-.main-menu-popup-item:focus-visible {
+.alarms-menu-popup-item:focus-visible {
   position: relative;
   z-index: 1;
   outline: 3px solid #007ca8;
   outline-offset: -3px;
 }
 
-.main-menu-popup-item svg {
+.alarms-menu-popup-item svg {
   width: 27px;
   height: 27px;
   stroke-width: 2;
 }
 
-.main-menu-popup-item:nth-child(3) svg {
+.alarms-menu-popup-item:first-child svg {
   fill: currentColor;
 }
 
 @media (max-width: 760px) {
-  .main-menu-popup {
+  .alarms-menu-popup {
     position: fixed;
     top: auto;
     right: 12px;
     bottom: 12px;
     left: 12px;
     width: auto;
-    max-height: calc(100vh - 24px);
     overflow-y: auto;
     padding-left: 18px;
   }
 
-  .main-menu-popup::before {
+  .alarms-menu-popup::before {
     display: none;
-  }
-
-  .main-menu-popup-item {
-    min-height: 52px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .main-menu-popup-item {
+  .alarms-menu-popup-item {
     transition-duration: .01ms;
   }
 }

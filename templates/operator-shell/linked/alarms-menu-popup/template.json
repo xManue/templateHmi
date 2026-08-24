@@ -1,0 +1,30 @@
+{
+  "id": "operator-shell-alarms-menu",
+  "name": "Operator Shell Alarms Menu",
+  "version": "1.0.0",
+  "type": "navigation-popup",
+  "description": "Popup aperto dalla voce Alarms dell'Operator Shell per scegliere allarmi attivi o storico.",
+  "entry": "src/AlarmsMenuPopupTemplate.jsx",
+  "reference": "reference/alarms-menu-popup.png",
+  "relationship": {
+    "mode": "linked",
+    "parentTemplateId": "operator-shell",
+    "trigger": "navigation:alarms",
+    "targetTemplateId": "alarm-list",
+    "routes": [
+      { "itemId": "alarms", "targetProps": { "mode": "alarms" } },
+      { "itemId": "history", "targetProps": { "mode": "history" } }
+    ]
+  },
+  "inputs": {
+    "id": "string",
+    "items": "Array<{ id, label, icon }>",
+    "open": "boolean",
+    "anchorY": "number | undefined",
+    "onSelect": "(item) => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css"
+  ]
+}

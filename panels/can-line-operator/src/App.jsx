@@ -4,6 +4,7 @@ import { connectionState, machineStates, navigationItems } from "../../../templa
 import { mainMenuItems } from "../../../templates/operator-shell/linked/main-menu-popup/src/templateData";
 import { alarmMenuItems } from "../../../templates/operator-shell/linked/alarms-menu-popup/src/templateData";
 import { manualsMenuItems } from "../../../templates/operator-shell/linked/manuals-menu-popup/src/templateData";
+import { diagnosticMenuItems } from "../../../templates/operator-shell/linked/diagnostic-menu-popup/src/templateData";
 import AlarmListTemplate from "../../../templates/alarm-list/src/AlarmListTemplate";
 import {
   alarmListCopy,
@@ -32,7 +33,6 @@ import {
 const directPages = {
   settings: ["Settings", "Parametri macchina e configurazione ricette"],
   statistics: ["Statistics", "Produzione, efficienza e indicatori OEE"],
-  diagnostic: ["Diagnostic", "Diagnostica dispositivi e comunicazioni"],
   formats: ["Formats", "Gestione formati e cambio produzione"],
 };
 
@@ -56,9 +56,11 @@ export default function App() {
       mainMenuItems={mainMenuItems}
       alarmMenuItems={alarmMenuItems}
       manualsMenuItems={manualsMenuItems}
+      diagnosticMenuItems={diagnosticMenuItems}
       onMainMenuItemSelect={setCurrentPage}
       onAlarmMenuItemSelect={selectAlarmMode}
       onManualsMenuItemSelect={(itemId) => setCurrentPage(`manual-${itemId}`)}
+      onDiagnosticMenuItemSelect={setCurrentPage}
       onSectionChange={selectSection}
     >
       <PanelPage page={currentPage} />
@@ -116,6 +118,16 @@ function PanelPage({ page }) {
       <PlaceholderPage
         title={`Manual ${manualItem?.label ?? manualId}`}
         description="Pagina manuale predisposta per i comandi e i tag PLC della sezione selezionata."
+      />
+    );
+  }
+
+  if (page.startsWith("diagnostic-")) {
+    const diagnosticItem = diagnosticMenuItems.find((item) => item.id === page);
+    return (
+      <PlaceholderPage
+        title={diagnosticItem?.label ?? "Diagnostic"}
+        description="Pagina predisposta per i tag PLC e i controlli della diagnostica selezionata."
       />
     );
   }

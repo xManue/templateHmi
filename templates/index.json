@@ -3,7 +3,7 @@
     {
       "id": "operator-shell",
       "name": "Operator Shell",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "type": "layout-shell",
       "path": "templates/operator-shell",
       "manifest": "templates/operator-shell/template.json",
@@ -12,7 +12,8 @@
         "linkedTemplates": [
           "operator-shell-main-menu",
           "operator-shell-alarms-menu",
-          "operator-shell-manuals-menu"
+          "operator-shell-manuals-menu",
+          "operator-shell-diagnostic-menu"
         ]
       }
     },
@@ -88,6 +89,19 @@
         "mode": "linked",
         "parentTemplateId": "operator-shell",
         "trigger": "navigation:manuals"
+      }
+    },
+    {
+      "id": "operator-shell-diagnostic-menu",
+      "name": "Operator Shell Diagnostic Menu",
+      "version": "1.0.0",
+      "type": "navigation-popup",
+      "path": "templates/operator-shell/linked/diagnostic-menu-popup",
+      "manifest": "templates/operator-shell/linked/diagnostic-menu-popup/template.json",
+      "relationship": {
+        "mode": "linked",
+        "parentTemplateId": "operator-shell",
+        "trigger": "navigation:diagnostic"
       }
     },
     {

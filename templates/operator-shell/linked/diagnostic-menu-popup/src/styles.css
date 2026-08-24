@@ -1,0 +1,93 @@
+.diagnostic-menu-popup {
+  position: absolute;
+  z-index: 30;
+  top: calc(var(--popup-anchor-y, 650px) - 59px);
+  left: calc(var(--side-bar-width) + 10px);
+  width: 210px;
+  overflow: visible;
+  padding: 0 10px 30px 18px;
+  border-radius: 8px;
+  background: rgba(207, 207, 207, .98);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .3);
+  color: #182031;
+}
+
+.diagnostic-menu-popup::before {
+  content: "";
+  position: absolute;
+  top: 39px;
+  right: 100%;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-right: 29px solid rgba(207, 207, 207, .98);
+  border-bottom: 20px solid transparent;
+}
+
+.diagnostic-menu-popup-item {
+  width: 100%;
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: 27px minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid rgba(40, 42, 48, .06);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.15;
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease;
+}
+
+.diagnostic-menu-popup-item:last-of-type {
+  border-bottom: 0;
+}
+
+.diagnostic-menu-popup-item:hover {
+  background: rgba(255, 255, 255, .32);
+  color: #050912;
+}
+
+.diagnostic-menu-popup-item:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 3px solid #007ca8;
+  outline-offset: -3px;
+}
+
+.diagnostic-menu-popup-item svg {
+  width: 23px;
+  height: 23px;
+  stroke-width: 2;
+}
+
+@media (max-width: 760px) {
+  .diagnostic-menu-popup {
+    position: fixed;
+    top: auto;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    width: auto;
+    padding-bottom: 12px;
+  }
+
+  .diagnostic-menu-popup::before {
+    display: none;
+  }
+
+  .diagnostic-menu-popup-item {
+    min-height: 52px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagnostic-menu-popup-item {
+    transition-duration: .01ms;
+  }
+}

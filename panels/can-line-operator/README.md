@@ -2,7 +2,7 @@
 
 Pannello React generato componendo i template del catalogo:
 
-- `operator-shell` per header, stati macchina, sidebar e popup Main, Alarms e Manuals;
+- `operator-shell` per header, stati macchina, sidebar e popup Main, Alarms, Manuals e Diagnostic;
 - `alarm-list` per Alarm e History;
 - `machine-counters` e `consumption` per le pagine aperte dal popup Main;
 - viste dedicate `Machine View` e `Manual General` con l'immagine macchina.

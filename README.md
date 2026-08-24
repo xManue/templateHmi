@@ -41,6 +41,7 @@ Creare una nuova cartella in `templates/`, aggiungere il relativo `template.json
 ## Template disponibili
 
 - `operator-shell`: guscio principale con header e navigazione;
+- `operator-shell/linked/diagnostic-menu-popup`: selezione diagnostica per zona o dispositivo;
 - `alarm-list`: pagina allarmi con selezione unità e callback di aggiornamento.
 - `machine-counters`: contatori macchina e dettagli degli scarti di ispezione.
 - `consumption`: consumi di aria e misure elettriche della macchina.

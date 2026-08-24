@@ -4,6 +4,7 @@ import { connectionState, machineStates, navigationItems } from "./templateData"
 import { mainMenuItems } from "../linked/main-menu-popup/src/templateData";
 import { alarmMenuItems } from "../linked/alarms-menu-popup/src/templateData";
 import { manualsMenuItems } from "../linked/manuals-menu-popup/src/templateData";
+import { diagnosticMenuItems } from "../linked/diagnostic-menu-popup/src/templateData";
 import AlarmListTemplate from "../../alarm-list/src/AlarmListTemplate";
 import {
   alarmListCopy,
@@ -45,6 +46,7 @@ export default function App() {
       onMainMenuItemSelect={setMainPage}
       alarmMenuItems={alarmMenuItems}
       manualsMenuItems={manualsMenuItems}
+      diagnosticMenuItems={diagnosticMenuItems}
       onAlarmMenuItemSelect={setAlarmMode}
       onSectionChange={selectSection}
     >

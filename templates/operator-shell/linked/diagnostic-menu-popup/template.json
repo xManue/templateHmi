@@ -1,0 +1,25 @@
+{
+  "id": "operator-shell-diagnostic-menu",
+  "name": "Operator Shell Diagnostic Menu",
+  "version": "1.0.0",
+  "type": "navigation-popup",
+  "description": "Popup aperto dalla voce Diagnostic dell'Operator Shell per scegliere la diagnostica per zona o dispositivo.",
+  "entry": "src/DiagnosticMenuPopupTemplate.jsx",
+  "reference": "reference/diagnostic-menu-popup.png",
+  "relationship": {
+    "mode": "linked",
+    "parentTemplateId": "operator-shell",
+    "trigger": "navigation:diagnostic"
+  },
+  "inputs": {
+    "id": "string",
+    "items": "Array<{ id, label, icon }>",
+    "open": "boolean",
+    "anchorY": "number | undefined",
+    "onSelect": "(item) => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css"
+  ]
+}

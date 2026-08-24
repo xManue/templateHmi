@@ -15,6 +15,7 @@ import {
 import MainMenuPopupTemplate from "../linked/main-menu-popup/src/MainMenuPopupTemplate";
 import AlarmsMenuPopupTemplate from "../linked/alarms-menu-popup/src/AlarmsMenuPopupTemplate";
 import ManualsMenuPopupTemplate from "../linked/manuals-menu-popup/src/ManualsMenuPopupTemplate";
+import DiagnosticMenuPopupTemplate from "../linked/diagnostic-menu-popup/src/DiagnosticMenuPopupTemplate";
 
 const icons = {
   home: Home,
@@ -39,6 +40,8 @@ export default function OperatorShellTemplate({
   onAlarmMenuItemSelect,
   manualsMenuItems = [],
   onManualsMenuItemSelect,
+  diagnosticMenuItems = [],
+  onDiagnosticMenuItemSelect,
   children,
 }) {
   const [activeSection, setActiveSection] = useState(initialSection);
@@ -49,6 +52,7 @@ export default function OperatorShellTemplate({
   const mainMenuButtonRef = useRef(null);
   const alarmsMenuButtonRef = useRef(null);
   const manualsMenuButtonRef = useRef(null);
+  const diagnosticMenuButtonRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
@@ -64,7 +68,9 @@ export default function OperatorShellTemplate({
           ? mainMenuButtonRef
           : openMenu === "alarms"
             ? alarmsMenuButtonRef
-            : manualsMenuButtonRef;
+            : openMenu === "manuals"
+              ? manualsMenuButtonRef
+              : diagnosticMenuButtonRef;
         setOpenMenu(null);
         window.requestAnimationFrame(() => trigger.current?.focus());
       }
@@ -86,6 +92,8 @@ export default function OperatorShellTemplate({
         ? alarmMenuItems
         : item.id === "manuals"
           ? manualsMenuItems
+          : item.id === "diagnostic"
+            ? diagnosticMenuItems
           : [];
 
     if (linkedItems.length > 0) {
@@ -121,6 +129,12 @@ export default function OperatorShellTemplate({
     onManualsMenuItemSelect?.(item.id);
   }
 
+  function selectDiagnosticMenuItem(item) {
+    setOpenMenu(null);
+    window.requestAnimationFrame(() => diagnosticMenuButtonRef.current?.focus());
+    onDiagnosticMenuItemSelect?.(item.id);
+  }
+
   return (
     <div className="operator-shell" ref={shellRef}>
       <header className="top-bar">
@@ -151,6 +165,8 @@ export default function OperatorShellTemplate({
                   ? alarmsMenuButtonRef
                   : item.id === "manuals"
                     ? manualsMenuButtonRef
+                    : item.id === "diagnostic"
+                      ? diagnosticMenuButtonRef
                     : undefined}
               className={`side-link ${active ? "active" : ""}`}
               style={{ "--item-color": item.color }}
@@ -161,6 +177,8 @@ export default function OperatorShellTemplate({
                   ? openMenu === "alarms"
                   : item.id === "manuals" && manualsMenuItems.length > 0
                     ? openMenu === "manuals"
+                    : item.id === "diagnostic" && diagnosticMenuItems.length > 0
+                      ? openMenu === "diagnostic"
                     : undefined}
               aria-controls={item.id === "main" && mainMenuItems.length > 0
                 ? "operator-shell-main-menu"
@@ -168,6 +186,8 @@ export default function OperatorShellTemplate({
                   ? "operator-shell-alarms-menu"
                   : item.id === "manuals" && manualsMenuItems.length > 0
                     ? "operator-shell-manuals-menu"
+                    : item.id === "diagnostic" && diagnosticMenuItems.length > 0
+                      ? "operator-shell-diagnostic-menu"
                     : undefined}
               onClick={(event) => selectSection(item, event.currentTarget)}
               key={item.id}
@@ -201,6 +221,14 @@ export default function OperatorShellTemplate({
         open={openMenu === "manuals"}
         anchorY={popupAnchorY}
         onSelect={selectManualsMenuItem}
+      />
+
+      <DiagnosticMenuPopupTemplate
+        id="operator-shell-diagnostic-menu"
+        items={diagnosticMenuItems}
+        open={openMenu === "diagnostic"}
+        anchorY={popupAnchorY}
+        onSelect={selectDiagnosticMenuItem}
       />
 
       <main className="page-slot" aria-label="Area contenuti pagina">

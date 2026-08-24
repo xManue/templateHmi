@@ -40,3 +40,9 @@ Creare una nuova cartella in `templates/`, aggiungere il relativo `template.json
 
 - `operator-shell`: guscio principale con header e navigazione;
 - `alarm-list`: pagina allarmi con selezione unità e callback di aggiornamento.
+
+## Pannelli generati
+
+- `panels/can-line-operator`: pannello operatore completo che compone
+  `operator-shell`, i relativi popup e `alarm-list`. Include le pagine Machine
+  View e Manual General con il layout macchina fornito.

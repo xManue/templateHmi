@@ -1,4 +1,5 @@
 packages:
   - "templates/*"
+  - "panels/*"
 allowBuilds:
   esbuild: true

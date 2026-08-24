@@ -1,0 +1,18 @@
+{
+  "panels": [
+    {
+      "id": "can-line-operator",
+      "name": "Can Line Operator Panel",
+      "version": "1.0.0",
+      "path": "panels/can-line-operator",
+      "manifest": "panels/can-line-operator/panel.json",
+      "usesTemplates": [
+        "operator-shell",
+        "operator-shell-main-menu",
+        "operator-shell-alarms-menu",
+        "operator-shell-manuals-menu",
+        "alarm-list"
+      ]
+    }
+  ]
+}

@@ -201,37 +201,6 @@
   stroke: #006d22;
 }
 
-.machine-zone-hint {
-  position: absolute;
-  z-index: 3;
-  top: 14px;
-  right: 14px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 35px;
-  padding: 0 12px;
-  border: 1px solid rgba(54, 61, 68, .32);
-  border-radius: 4px;
-  color: #444a50;
-  background: rgba(255, 255, 255, .88);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.machine-zone-hint span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #858b91;
-  box-shadow: 0 0 0 3px rgba(133, 139, 145, .18);
-}
-
-.machine-zone-hint span.is-active {
-  background: #00bd36;
-  box-shadow: 0 0 0 3px rgba(0, 189, 54, .18);
-}
-
 .machine-image-label,
 .manual-machine-stage span {
   position: absolute;

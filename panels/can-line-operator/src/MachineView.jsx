@@ -61,11 +61,6 @@ export default function MachineView() {
           variant="conveyor"
         />
 
-        <div className="machine-zone-hint" aria-live="polite">
-          <span className={unscramblerActive ? "is-active" : ""} />
-          {unscramblerActive ? "Unscramblers Conveyor selected" : "Select a machine zone"}
-        </div>
-
         <MachineViewControlsPopupTemplate
           open={controlsOpen}
           parts={machineParts}

@@ -15,6 +15,13 @@ import {
 import MachineView from "./MachineView";
 import ManualGeneral from "./ManualGeneral";
 import PlaceholderPage from "./PlaceholderPage";
+import MachineCountersTemplate from "../../../templates/machine-counters/src/MachineCountersTemplate";
+import {
+  counters,
+  diagnostics,
+  machineCounterVariables,
+  rejectionReasons,
+} from "../../../templates/machine-counters/src/templateData";
 
 const directPages = {
   settings: ["Settings", "Parametri macchina e configurazione ricette"],
@@ -55,6 +62,17 @@ export default function App() {
 
 function PanelPage({ page }) {
   if (page === "machine-view") return <MachineView />;
+  if (page === "counter-machine") {
+    return (
+      <MachineCountersTemplate
+        title={machineCounterVariables.title}
+        counters={counters}
+        diagnostics={diagnostics}
+        rejectionReasons={rejectionReasons}
+        initialLastRejectedBundles={machineCounterVariables.initialLastRejectedBundles}
+      />
+    );
+  }
   if (page === "manual-general") return <ManualGeneral />;
 
   if (page === "alarms" || page === "history") {

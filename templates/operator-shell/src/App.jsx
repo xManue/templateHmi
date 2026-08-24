@@ -12,12 +12,21 @@ import {
   history,
   units,
 } from "../../alarm-list/src/templateData";
+import MachineCountersTemplate from "../../machine-counters/src/MachineCountersTemplate";
+import {
+  counters,
+  diagnostics,
+  machineCounterVariables,
+  rejectionReasons,
+} from "../../machine-counters/src/templateData";
 
 export default function App() {
   const [alarmMode, setAlarmMode] = useState(null);
+  const [mainPage, setMainPage] = useState(null);
 
   function selectSection(sectionId) {
     if (sectionId !== "alarms") setAlarmMode(null);
+    if (sectionId !== "main") setMainPage(null);
   }
 
   return (
@@ -27,12 +36,21 @@ export default function App() {
       connection={connectionState}
       userName="DefaultUser"
       mainMenuItems={mainMenuItems}
+      onMainMenuItemSelect={setMainPage}
       alarmMenuItems={alarmMenuItems}
       manualsMenuItems={manualsMenuItems}
       onAlarmMenuItemSelect={setAlarmMode}
       onSectionChange={selectSection}
     >
-      {alarmMode && (
+      {mainPage === "counter-machine" ? (
+        <MachineCountersTemplate
+          title={machineCounterVariables.title}
+          counters={counters}
+          diagnostics={diagnostics}
+          rejectionReasons={rejectionReasons}
+          initialLastRejectedBundles={machineCounterVariables.initialLastRejectedBundles}
+        />
+      ) : alarmMode ? (
         <AlarmListTemplate
           mode={alarmMode}
           title={alarmListCopy[alarmMode].title}
@@ -43,7 +61,7 @@ export default function App() {
           initialActiveUnit={alarmListVariables.initialActiveUnit}
           visibleRows={alarmListVariables.visibleRows}
         />
-      )}
+      ) : null}
     </OperatorShellTemplate>
   );
 }

@@ -1,0 +1,28 @@
+{
+  "id": "machine-counters",
+  "name": "Machine Counters",
+  "version": "1.0.0",
+  "type": "page",
+  "description": "Pagina HMI per contatori macchina, diagnostica bundle e dettaglio delle cause di scarto.",
+  "entry": "src/MachineCountersTemplate.jsx",
+  "preview": "src/App.jsx",
+  "reference": "reference/machine-counters.png",
+  "compatibleWith": ["operator-shell"],
+  "inputs": {
+    "title": "string",
+    "counters": "{ metalDetector, hermosCamera, inspectionCamera }",
+    "diagnostics": "{ centering, flavor, checks }",
+    "rejectionReasons": "Array<{ id, label, value }>",
+    "lastRejectedBundles": "number | undefined",
+    "initialLastRejectedBundles": "number",
+    "onLastRejectedBundlesChange": "(value) => void",
+    "onResetMetalDetector": "() => void",
+    "onResetGoodTotal": "() => void",
+    "onResetRejectedTotal": "() => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css",
+    "src/App.jsx"
+  ]
+}

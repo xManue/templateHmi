@@ -1,0 +1,448 @@
+.machine-counters-page,
+.machine-counters-page * {
+  box-sizing: border-box;
+}
+
+.machine-counters-page {
+  --surface: #fdfdfd;
+  --frame: #d1d1d1;
+  --line: #d0d5d8;
+  --text: #353535;
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  display: grid;
+  grid-template-rows: 51px minmax(0, 1fr);
+  gap: 8px;
+  padding: 14px 13px 18px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--frame);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.machine-counters-title {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0 21px;
+  border-radius: 11px;
+  background: var(--surface);
+}
+
+.machine-counters-title h1,
+.counter-card-heading h2 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.machine-counters-title h1 {
+  font-size: 18px;
+}
+
+.machine-counters-grid {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(470px, 1fr);
+  gap: 6px;
+}
+
+.machine-counters-left-column {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 119px 119px 172px minmax(216px, 1fr);
+  gap: 6px;
+}
+
+.counter-card {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.counter-card-heading {
+  min-height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 16px;
+  border-bottom: 2px solid var(--line);
+  text-align: center;
+}
+
+.counter-card-heading h2 {
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.metal-detector-row {
+  height: calc(100% - 51px);
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(230px, 37%);
+  align-items: center;
+  gap: 30px;
+  padding: 6px 43px 7px 51px;
+}
+
+.counter-metric {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) 99px;
+  align-items: center;
+  gap: 18px;
+}
+
+.counter-metric > span {
+  min-width: 0;
+  text-align: right;
+  font-size: 16px;
+}
+
+.counter-metric output,
+.rejection-reason-row dd {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 13px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: linear-gradient(#e8e8e8, #d5d5d5);
+  box-shadow: inset 0 1px 2px rgb(255 255 255 / 75%);
+  color: #111;
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.machine-counter-action {
+  min-height: 50px;
+  padding: 0 22px;
+  border: 1px solid #686970;
+  border-radius: 6px;
+  background: linear-gradient(#4f5055, #292a2e);
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 28%);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  transition: filter .18s ease, background-color .18s ease;
+}
+
+.machine-counter-action:hover {
+  filter: brightness(1.16);
+}
+
+.machine-counter-action:focus-visible,
+.last-rejected-field input:focus-visible {
+  outline: 3px solid #007ca8;
+  outline-offset: 2px;
+}
+
+.single-metric-row {
+  height: calc(100% - 51px);
+  display: grid;
+  place-items: center;
+  padding: 7px 50px;
+}
+
+.single-metric-row .counter-metric {
+  width: min(100%, 300px);
+}
+
+.inspection-metrics {
+  height: calc(100% - 51px);
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  padding: 10px 66px;
+}
+
+.inspection-metrics .counter-metric {
+  width: min(100%, 585px);
+  margin: 0 auto;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--line);
+}
+
+.inspection-metrics .counter-metric:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.diagnostics-card {
+  display: grid;
+  grid-template-rows: 51px minmax(0, 1fr);
+}
+
+.diagnostics-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px;
+  padding: 0 68px 0 18px;
+}
+
+.diagnostics-heading h2 {
+  justify-self: center;
+}
+
+.last-rejected-field input {
+  width: 72px;
+  height: 39px;
+  padding: 0 13px;
+  border: 1px solid #c7c7c7;
+  border-radius: 6px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.diagnostics-body {
+  min-height: 0;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  padding: 20px 34px;
+}
+
+.diagnostic-values {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 68px;
+}
+
+.diagnostic-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.diagnostic-output {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 4px solid;
+  border-radius: 7px;
+  background: #f3f3f3;
+  color: #111;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.diagnostic-output.danger {
+  border-color: #ec0b48;
+}
+
+.diagnostic-output.success {
+  border-color: #27c874;
+}
+
+.diagnostic-checks {
+  display: grid;
+  grid-template-columns: repeat(9, 43px);
+  gap: 4px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.diagnostic-checks li {
+  display: grid;
+  grid-template-rows: 22px 45px;
+  gap: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.check-status {
+  display: block;
+  border: 1px solid #5d8a6f;
+  border-radius: 5px;
+  background: #646464;
+}
+
+.check-status.is-active {
+  background: #2bc878;
+}
+
+.rejected-details-card {
+  display: grid;
+  grid-template-rows: 51px minmax(0, 1fr) 83px;
+}
+
+.rejection-reasons {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(12, minmax(39px, 1fr));
+  align-content: stretch;
+  margin: 0;
+  padding: 8px 66px 0;
+  overflow: hidden;
+}
+
+.rejection-reason-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 99px;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 2px solid var(--line);
+}
+
+.rejection-reason-row dt {
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.rejection-reason-row dd {
+  min-height: 38px;
+  margin: 0;
+}
+
+.rejected-details-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 16px 65px;
+  border-top: 5px solid var(--frame);
+}
+
+.rejected-details-actions .machine-counter-action {
+  min-height: 51px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1180px) {
+  .machine-counters-page {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+  }
+
+  .machine-counters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .machine-counters-left-column {
+    grid-template-rows: 119px 119px 172px 260px;
+  }
+
+  .rejected-details-card {
+    min-height: 660px;
+  }
+}
+
+@media (max-width: 680px) {
+  .machine-counters-page {
+    grid-template-rows: 51px auto;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .metal-detector-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 8px 16px;
+  }
+
+  .metal-detector-card,
+  .machine-counters-left-column {
+    min-height: auto;
+  }
+
+  .machine-counters-left-column {
+    grid-template-rows: 168px 119px 172px auto;
+  }
+
+  .counter-metric {
+    grid-template-columns: minmax(120px, 1fr) 90px;
+  }
+
+  .inspection-metrics,
+  .single-metric-row {
+    padding-inline: 16px;
+  }
+
+  .diagnostics-card {
+    grid-template-rows: auto auto;
+  }
+
+  .diagnostics-heading {
+    min-height: 76px;
+    grid-template-columns: 1fr 65px;
+    padding: 8px 12px;
+  }
+
+  .diagnostics-body {
+    padding: 18px 10px;
+  }
+
+  .diagnostic-values {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .diagnostic-value {
+    justify-content: space-between;
+  }
+
+  .diagnostic-checks {
+    grid-template-columns: repeat(5, 43px);
+  }
+
+  .rejection-reasons {
+    padding-inline: 12px;
+  }
+
+  .rejection-reason-row {
+    grid-template-columns: minmax(160px, 1fr) 72px;
+    gap: 8px;
+  }
+
+  .rejection-reason-row dt {
+    white-space: normal;
+    font-size: 14px;
+  }
+
+  .rejected-details-actions {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .rejected-details-card {
+    min-height: 770px;
+    grid-template-rows: auto minmax(0, 1fr) 124px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .machine-counters-page *,
+  .machine-counters-page *::before,
+  .machine-counters-page *::after {
+    transition-duration: .01ms !important;
+  }
+}

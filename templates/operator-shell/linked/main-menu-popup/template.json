@@ -1,7 +1,7 @@
 {
   "id": "operator-shell-main-menu",
   "name": "Operator Shell Main Menu",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "navigation-popup",
   "description": "Popup di navigazione industriale aperto dalla voce Main dell'Operator Shell.",
   "entry": "src/MainMenuPopupTemplate.jsx",
@@ -9,7 +9,13 @@
   "relationship": {
     "mode": "linked",
     "parentTemplateId": "operator-shell",
-    "trigger": "navigation:main"
+    "trigger": "navigation:main",
+    "routes": [
+      {
+        "itemId": "counter-machine",
+        "targetTemplateId": "machine-counters"
+      }
+    ]
   },
   "inputs": {
     "id": "string",

@@ -30,6 +30,7 @@ cd C:\Users\m.negrini\Desktop\templateHmi
 pnpm install
 pnpm run dev:operator-shell
 pnpm run dev:alarm-list
+pnpm run dev:machine-counters
 ```
 
 ## Aggiunta di un template
@@ -40,9 +41,10 @@ Creare una nuova cartella in `templates/`, aggiungere il relativo `template.json
 
 - `operator-shell`: guscio principale con header e navigazione;
 - `alarm-list`: pagina allarmi con selezione unità e callback di aggiornamento.
+- `machine-counters`: contatori macchina e dettagli degli scarti di ispezione.
 
 ## Pannelli generati
 
 - `panels/can-line-operator`: pannello operatore completo che compone
   `operator-shell`, i relativi popup e `alarm-list`. Include le pagine Machine
-  View e Manual General con il layout macchina fornito.
+  View, Counter Machine e Manual General con il layout macchina fornito.

@@ -19,14 +19,32 @@
     {
       "id": "operator-shell-main-menu",
       "name": "Operator Shell Main Menu",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "type": "navigation-popup",
       "path": "templates/operator-shell/linked/main-menu-popup",
       "manifest": "templates/operator-shell/linked/main-menu-popup/template.json",
       "relationship": {
         "mode": "linked",
         "parentTemplateId": "operator-shell",
-        "trigger": "navigation:main"
+        "trigger": "navigation:main",
+        "routes": [
+          {
+            "itemId": "counter-machine",
+            "targetTemplateId": "machine-counters"
+          }
+        ]
+      }
+    },
+    {
+      "id": "machine-counters",
+      "name": "Machine Counters",
+      "version": "1.0.0",
+      "type": "page",
+      "path": "templates/machine-counters",
+      "manifest": "templates/machine-counters/template.json",
+      "relationship": {
+        "mode": "standalone",
+        "linkedFrom": ["operator-shell-main-menu:counter-machine"]
       }
     },
     {

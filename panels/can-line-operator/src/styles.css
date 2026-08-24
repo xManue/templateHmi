@@ -5,6 +5,18 @@
   background: #080a0d;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .panel-page-header {
   min-height: 72px;
   display: flex;
@@ -57,7 +69,7 @@
 
 .machine-view-page {
   display: grid;
-  grid-template-rows: auto minmax(360px, 1fr) auto;
+  grid-template-rows: minmax(420px, 1fr) auto;
   gap: 12px;
   padding: 0 2px 2px 0;
 }
@@ -81,6 +93,133 @@
   height: 100%;
   display: block;
   object-fit: contain;
+}
+
+.machine-zone-map {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.machine-zone-path-shadow,
+.machine-zone-path {
+  fill: none;
+  opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+
+.machine-zone-path-shadow {
+  stroke: rgba(0, 0, 0, .82);
+  stroke-width: 13px;
+}
+
+.machine-zone-path {
+  stroke: #00d737;
+  stroke-width: 8px;
+  filter: drop-shadow(0 0 3px rgba(0, 215, 55, .78));
+}
+
+.has-active-zone .machine-zone-path-shadow,
+.has-active-zone .machine-zone-path {
+  opacity: 1;
+}
+
+.machine-hotspot {
+  color: #4a4f55;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+}
+
+.machine-hotspot-hit {
+  fill: transparent;
+}
+
+.machine-hotspot-ring {
+  fill: rgba(255, 255, 255, .9);
+  stroke: #dadde0;
+  stroke-width: 4px;
+  transition: fill .18s ease, stroke .18s ease;
+}
+
+.machine-hotspot-core {
+  fill: #fff;
+  stroke: currentColor;
+  stroke-width: 4px;
+  transition: fill .18s ease, stroke .18s ease;
+}
+
+.machine-hotspot:hover .machine-hotspot-ring,
+.machine-hotspot:focus .machine-hotspot-ring {
+  stroke: #00a8d7;
+  stroke-width: 6px;
+}
+
+.machine-hotspot.is-active {
+  color: #007e28;
+}
+
+.machine-hotspot.is-active .machine-hotspot-ring {
+  fill: rgba(223, 255, 232, .94);
+  stroke: #00d737;
+}
+
+.machine-hotspot.is-active .machine-hotspot-core {
+  fill: #00d737;
+  stroke: #006d22;
+}
+
+.machine-callout-line {
+  fill: none;
+  stroke: #747a81;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+
+.machine-callout-label {
+  fill: #5f656c;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.machine-zone-hint {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 35px;
+  padding: 0 12px;
+  border: 1px solid rgba(54, 61, 68, .32);
+  border-radius: 4px;
+  color: #444a50;
+  background: rgba(255, 255, 255, .88);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.machine-zone-hint span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #858b91;
+  box-shadow: 0 0 0 3px rgba(133, 139, 145, .18);
+}
+
+.machine-zone-hint span.is-active {
+  background: #00bd36;
+  box-shadow: 0 0 0 3px rgba(0, 189, 54, .18);
 }
 
 .machine-image-label,

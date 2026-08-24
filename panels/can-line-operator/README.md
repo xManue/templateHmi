@@ -5,6 +5,7 @@ Pannello React generato componendo i template del catalogo:
 - `operator-shell` per header, stati macchina, sidebar e popup Main, Alarms e Manuals;
 - `alarm-list` per Alarm e History;
 - viste dedicate `Machine View` e `Manual General` con l'immagine macchina.
+- selezione interattiva dell'Unscrambler sinistro con percorso evidenziato in verde.
 
 ## Avvio
 

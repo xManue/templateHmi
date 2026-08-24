@@ -144,6 +144,14 @@
   stroke-linejoin: round;
 }
 
+.machine-zone-conveyor {
+  fill: none;
+  stroke: #00c82d;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .machine-hotspot {
   color: #4a4f55;
   cursor: pointer;

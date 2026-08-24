@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, Hand, Pause, Play, RotateCcw } from "lucide-react";
+import UnscramblerZoneOverlay from "./UnscramblerZoneOverlay";
 
 const machineAreas = [
+  "Unscramblers Conveyor",
   "Empty Lids Feeding",
   "Empty Cans Feeding",
   "Lids Buffer",
@@ -15,6 +17,18 @@ export default function ManualGeneral() {
   const [mode, setMode] = useState("Manual");
   const [speed, setSpeed] = useState(35);
   const [running, setRunning] = useState(false);
+  const [activeZone, setActiveZone] = useState(null);
+  const unscramblerActive = activeZone === "unscramblers-conveyor";
+
+  function toggleUnscrambler() {
+    setSelectedArea("Unscramblers Conveyor");
+    setActiveZone((current) => current === "unscramblers-conveyor" ? null : "unscramblers-conveyor");
+  }
+
+  function selectArea(area) {
+    setSelectedArea(area);
+    setActiveZone(area === "Unscramblers Conveyor" ? "unscramblers-conveyor" : null);
+  }
 
   return (
     <section className="panel-page manual-page" aria-labelledby="manual-title">
@@ -30,8 +44,18 @@ export default function ManualGeneral() {
 
       <div className="manual-layout">
         <div className="manual-visual-column">
-          <div className="manual-machine-stage">
-            <img src="/machine-line.png" alt="Linea automatica per i comandi Manual General" />
+          <div className={`manual-machine-stage ${unscramblerActive ? "has-active-zone" : ""}`}>
+            <img
+              src="/machine-line.png"
+              alt="Linea automatica per i comandi Manual General"
+              draggable={false}
+              onDragStart={(event) => event.preventDefault()}
+            />
+            <UnscramblerZoneOverlay
+              active={unscramblerActive}
+              onToggle={toggleUnscrambler}
+              variant="area"
+            />
             <span>{selectedArea}</span>
           </div>
 
@@ -40,7 +64,7 @@ export default function ManualGeneral() {
               <button
                 type="button"
                 className={selectedArea === area ? "is-selected" : ""}
-                onClick={() => setSelectedArea(area)}
+                onClick={() => selectArea(area)}
                 key={area}
               >
                 <small>{String(index + 1).padStart(2, "0")}</small>

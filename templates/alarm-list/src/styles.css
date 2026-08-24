@@ -48,7 +48,7 @@ button {
   border-right-width: 13px;
   border-bottom-width: 11px;
   border-radius: 12px 12px 13px 13px;
-  background: #000;
+  background: #fff;
 }
 
 .hmi-alarm-page .alarm-toolbar {
@@ -97,7 +97,7 @@ button {
 
 .hmi-alarm-page .alarm-table {
   height: calc(100% - 44px);
-  background: #000;
+  background: #fff;
 }
 
 .hmi-alarm-page .alarm-table-header {
@@ -114,6 +114,8 @@ button {
   padding: 0 17px;
   border-right: 1px solid #d2d2d2;
   border-bottom: 1px solid #d2d2d2;
+  color: #111;
+  background: #fff;
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
   font-weight: 700;
@@ -152,6 +154,8 @@ button {
   padding-right: 11px;
   border-right: 1px solid #d0d0d0;
   border-bottom: 1px solid #d0d0d0;
+  color: #111;
+  background: #fff;
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
   font-weight: 700;
@@ -159,17 +163,20 @@ button {
 }
 
 .hmi-alarm-page .alarm-data {
+  display: grid;
+  grid-template-rows: repeat(var(--visible-rows), minmax(16px, 1fr));
   min-width: 0;
   height: 100%;
   overflow: hidden;
-  background: #000;
+  background: #fff;
 }
 
 .hmi-alarm-page .alarm-data-row {
   display: grid;
   grid-template-columns: 53px 59px minmax(280px, 1fr) 233px 287px;
-  min-height: 32px;
-  color: #fff;
+  min-height: 0;
+  color: #111;
+  background: #fff;
   font-size: 14px;
 }
 
@@ -178,6 +185,9 @@ button {
   align-items: center;
   min-width: 0;
   padding: 0 10px;
+  border-right: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  background: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

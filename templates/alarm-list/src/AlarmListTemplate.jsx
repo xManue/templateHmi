@@ -26,6 +26,10 @@ export default function AlarmListTemplate({
   const resolvedRefreshLabel = refreshLabel ?? (historyMode ? "Refresh History" : "Refresh Alarms");
   const records = historyMode ? history : alarms;
   const rowNumbers = Array.from({ length: visibleRows }, (_, index) => index + 1);
+  const visibleRecords = Array.from(
+    { length: visibleRows },
+    (_, index) => records[index] ?? null,
+  );
 
   function selectUnit(unit) {
     if (activeUnit === undefined) setInternalUnit(unit);
@@ -60,14 +64,14 @@ export default function AlarmListTemplate({
             >
               {rowNumbers.map((number) => <span key={number}>{number}</span>)}
             </div>
-            <div className="alarm-data">
-              {records.slice(0, visibleRows).map((alarm) => (
-                <div className="alarm-data-row" role="row" key={alarm.id}>
-                  <span role="cell">{alarm.id}</span>
-                  <span role="cell">{alarm.category}</span>
-                  <span role="cell">{alarm.text}</span>
-                  <span role="cell">{alarm.time}</span>
-                  <span role="cell">{alarm.unitName}</span>
+            <div className="alarm-data" style={{ "--visible-rows": visibleRows }}>
+              {visibleRecords.map((alarm, index) => (
+                <div className="alarm-data-row" role="row" key={alarm?.id ?? `empty-${index}`}>
+                  <span role="cell">{alarm?.id ?? ""}</span>
+                  <span role="cell">{alarm?.category ?? ""}</span>
+                  <span role="cell">{alarm?.text ?? ""}</span>
+                  <span role="cell">{alarm?.time ?? ""}</span>
+                  <span role="cell">{alarm?.unitName ?? ""}</span>
                 </div>
               ))}
             </div>

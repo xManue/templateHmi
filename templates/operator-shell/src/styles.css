@@ -36,6 +36,7 @@ button:focus-visible {
 .operator-shell {
   --top-bar-height: 176px;
   --side-bar-width: 110px;
+  position: relative;
   min-height: 100vh;
   display: grid;
   grid-template-columns: var(--side-bar-width) minmax(0, 1fr);

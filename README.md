@@ -16,6 +16,13 @@ Ogni cartella dentro `templates/` contiene:
 - `reference/`: screenshot di riferimento;
 - `package.json` e `vite.config.js`: ambiente di anteprima e build.
 
+## Organizzazione dei template
+
+- `templates/<template-id>/`: template base o utilizzabili senza dipendere da un altro template;
+- `templates/<template-id>/linked/<linked-template-id>/`: template collegati direttamente al template padre.
+
+La relazione viene dichiarata anche in `templates/index.json` tramite `relationship.mode`, `parentTemplateId` e `trigger`. In questo modo il generatore può distinguere i template indipendenti da quelli che completano un flusso esistente.
+
 ## Primo avvio
 
 ```powershell

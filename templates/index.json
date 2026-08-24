@@ -3,10 +3,27 @@
     {
       "id": "operator-shell",
       "name": "Operator Shell",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "type": "layout-shell",
       "path": "templates/operator-shell",
-      "manifest": "templates/operator-shell/template.json"
+      "manifest": "templates/operator-shell/template.json",
+      "relationship": {
+        "mode": "base",
+        "linkedTemplates": ["operator-shell-main-menu"]
+      }
+    },
+    {
+      "id": "operator-shell-main-menu",
+      "name": "Operator Shell Main Menu",
+      "version": "1.0.0",
+      "type": "navigation-popup",
+      "path": "templates/operator-shell/linked/main-menu-popup",
+      "manifest": "templates/operator-shell/linked/main-menu-popup/template.json",
+      "relationship": {
+        "mode": "linked",
+        "parentTemplateId": "operator-shell",
+        "trigger": "navigation:main"
+      }
     },
     {
       "id": "alarm-list",
@@ -14,7 +31,10 @@
       "version": "1.0.0",
       "type": "page",
       "path": "templates/alarm-list",
-      "manifest": "templates/alarm-list/template.json"
+      "manifest": "templates/alarm-list/template.json",
+      "relationship": {
+        "mode": "standalone"
+      }
     }
   ]
 }

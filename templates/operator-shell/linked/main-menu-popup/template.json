@@ -1,0 +1,24 @@
+{
+  "id": "operator-shell-main-menu",
+  "name": "Operator Shell Main Menu",
+  "version": "1.0.0",
+  "type": "navigation-popup",
+  "description": "Popup di navigazione industriale aperto dalla voce Main dell'Operator Shell.",
+  "entry": "src/MainMenuPopupTemplate.jsx",
+  "reference": "reference/main-menu-popup.png",
+  "relationship": {
+    "mode": "linked",
+    "parentTemplateId": "operator-shell",
+    "trigger": "navigation:main"
+  },
+  "inputs": {
+    "id": "string",
+    "items": "Array<{ id, label, icon }>",
+    "open": "boolean",
+    "onSelect": "(item) => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css"
+  ]
+}

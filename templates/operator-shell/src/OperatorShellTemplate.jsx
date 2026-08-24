@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   Activity,
   BarChart3,
@@ -12,6 +12,7 @@ import {
   UserRound,
   Wrench,
 } from "lucide-react";
+import MainMenuPopupTemplate from "../linked/main-menu-popup/src/MainMenuPopupTemplate";
 
 const icons = {
   home: Home,
@@ -30,15 +31,33 @@ export default function OperatorShellTemplate({
   userName,
   initialSection = "main",
   onSectionChange,
+  mainMenuItems = [],
+  onMainMenuItemSelect,
   children,
 }) {
   const [activeSection, setActiveSection] = useState(initialSection);
+  const [mainMenuOpen, setMainMenuOpen] = useState(false);
   const [now, setNow] = useState(new Date());
+  const mainMenuButtonRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!mainMenuOpen) return undefined;
+
+    function closeOnEscape(event) {
+      if (event.key === "Escape") {
+        setMainMenuOpen(false);
+        window.requestAnimationFrame(() => mainMenuButtonRef.current?.focus());
+      }
+    }
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mainMenuOpen]);
 
   const statusColumns = useMemo(() => {
     const midpoint = Math.ceil(machineStates.length / 2);
@@ -46,8 +65,22 @@ export default function OperatorShellTemplate({
   }, [machineStates]);
 
   function selectSection(item) {
+    if (item.id === "main" && mainMenuItems.length > 0) {
+      setActiveSection(item.id);
+      setMainMenuOpen((open) => !open);
+      onSectionChange?.(item.id);
+      return;
+    }
+
     setActiveSection(item.id);
+    setMainMenuOpen(false);
     onSectionChange?.(item.id);
+  }
+
+  function selectMainMenuItem(item) {
+    setMainMenuOpen(false);
+    window.requestAnimationFrame(() => mainMenuButtonRef.current?.focus());
+    onMainMenuItemSelect?.(item.id);
   }
 
   return (
@@ -74,9 +107,12 @@ export default function OperatorShellTemplate({
           return (
             <button
               type="button"
+              ref={item.id === "main" ? mainMenuButtonRef : undefined}
               className={`side-link ${active ? "active" : ""}`}
               style={{ "--item-color": item.color }}
               aria-current={active ? "page" : undefined}
+              aria-expanded={item.id === "main" ? mainMenuOpen : undefined}
+              aria-controls={item.id === "main" && mainMenuItems.length > 0 ? "operator-shell-main-menu" : undefined}
               onClick={() => selectSection(item)}
               key={item.id}
             >
@@ -86,6 +122,13 @@ export default function OperatorShellTemplate({
           );
         })}
       </nav>
+
+      <MainMenuPopupTemplate
+        id="operator-shell-main-menu"
+        items={mainMenuItems}
+        open={mainMenuOpen}
+        onSelect={selectMainMenuItem}
+      />
 
       <main className="page-slot" aria-label="Area contenuti pagina">
         {children}

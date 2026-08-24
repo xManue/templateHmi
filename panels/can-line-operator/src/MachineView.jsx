@@ -31,41 +31,20 @@ export default function MachineView() {
         >
           <g className="machine-zone-geometry" aria-hidden="true">
             <path
-              className="machine-zone-outline"
+              className="machine-zone-conveyor"
               vectorEffect="non-scaling-stroke"
-              d="M95 554
-                 C125 540 143 520 145 495
-                 L148 470
-                 C149 430 160 405 195 380
-                 L338 300
-                 C383 274 430 263 475 248
-                 L505 236
-                 C528 226 550 228 575 243
-                 L635 290
-                 C660 310 683 328 706 328
-                 C728 328 747 320 768 313
-                 L825 300
-                 L810 342
-                 C782 350 756 360 730 370
-                 C708 377 686 376 664 365
-                 L606 320
-                 C585 304 566 289 546 284
-                 C529 279 516 281 498 288
-                 L460 302
-                 C417 316 379 331 345 350
-                 L225 425
-                 C193 445 179 465 178 495
-                 L174 560
-                 C172 590 158 615 134 634
-                 L120 644
-                 Z"
+              d="M154 592
+                 L158 486
+                 C159 449 177 428 214 410
+                 L348 329
+                 C391 304 437 293 483 278
+                 L512 266
+                 C530 258 547 260 566 271
+                 L625 318
+                 C651 339 675 357 700 357
+                 C716 357 730 351 747 343"
             />
           </g>
-
-          <path className="machine-callout-line" d="M120 653 L120 760 L335 760" />
-          <text className="machine-callout-label" x="128" y="793">
-            Unscrambler Lids Conveyor
-          </text>
 
           <g
             className={`machine-hotspot ${unscramblerActive ? "is-active" : ""}`}

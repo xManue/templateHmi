@@ -116,7 +116,7 @@
   opacity: 1;
 }
 
-.machine-zone-outline {
+.machine-zone-conveyor {
   fill: none;
   stroke: #00c82d;
   stroke-width: 4px;
@@ -167,21 +167,6 @@
 .machine-hotspot.is-active .machine-hotspot-core {
   fill: #00d737;
   stroke: #006d22;
-}
-
-.machine-callout-line {
-  fill: none;
-  stroke: #747a81;
-  stroke-width: 2px;
-  pointer-events: none;
-}
-
-.machine-callout-label {
-  fill: #5f656c;
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  pointer-events: none;
 }
 
 .machine-zone-hint {

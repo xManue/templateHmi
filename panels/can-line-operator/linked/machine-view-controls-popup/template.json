@@ -1,0 +1,30 @@
+{
+  "id": "machine-view-controls-popup",
+  "name": "Machine View Controls Popup",
+  "version": "1.0.0",
+  "type": "control-popup",
+  "description": "Popup HMI aperto da una zona della Machine View per selezionare una parte macchina e inviare comandi fittizi.",
+  "entry": "src/MachineViewControlsPopupTemplate.jsx",
+  "reference": "reference/machine-view-controls-popup.png",
+  "relationship": {
+    "mode": "linked",
+    "parentPanelId": "can-line-operator",
+    "parentPageId": "machine-view",
+    "trigger": "machine-part:select"
+  },
+  "inputs": {
+    "open": "boolean",
+    "parts": "Array<{ id, label }>",
+    "selectedPartId": "string",
+    "actions": "Array<{ id, label, icon, tone, hideLabel }>",
+    "mode": "manual | auto",
+    "onPartChange": "(partId) => void",
+    "onAction": "(actionId, partId) => void",
+    "onModeChange": "(mode) => void",
+    "onClose": "() => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css"
+  ]
+}

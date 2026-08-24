@@ -51,4 +51,5 @@ Creare una nuova cartella in `templates/`, aggiungere il relativo `template.json
 - `panels/can-line-operator`: pannello operatore completo che compone
   `operator-shell`, i relativi popup e i template di pagina. Include le pagine
   Machine View, Counter Machine, Consumption e Manual General con il layout
-  macchina fornito.
+  macchina fornito. Il popup `linked/machine-view-controls-popup` appartiene
+  direttamente alla Machine View.

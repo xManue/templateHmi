@@ -7,6 +7,7 @@ Pannello React generato componendo i template del catalogo:
 - `machine-counters` e `consumption` per le pagine aperte dal popup Main;
 - viste dedicate `Machine View` e `Manual General` con l'immagine macchina.
 - selezione interattiva dell'Unscrambler sinistro con percorso evidenziato in verde.
+- popup comandi collegato alla Machine View, con selezione della parte macchina e callback fittizie.
 
 ## Avvio
 

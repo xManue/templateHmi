@@ -20,7 +20,7 @@
     {
       "id": "operator-shell-main-menu",
       "name": "Operator Shell Main Menu",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "type": "navigation-popup",
       "path": "templates/operator-shell/linked/main-menu-popup",
       "manifest": "templates/operator-shell/linked/main-menu-popup/template.json",
@@ -29,6 +29,11 @@
         "parentTemplateId": "operator-shell",
         "trigger": "navigation:main",
         "routes": [
+          {
+            "itemId": "machine-view",
+            "targetPanelId": "can-line-operator",
+            "targetPageId": "machine-view"
+          },
           {
             "itemId": "counter-machine",
             "targetTemplateId": "machine-counters"

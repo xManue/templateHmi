@@ -33,7 +33,12 @@ const hotspotPositions = {
   area: { x: 220, y: 565 },
 };
 
-export default function UnscramblerZoneOverlay({ active, onToggle, variant = "conveyor" }) {
+export default function UnscramblerZoneOverlay({
+  active,
+  buttonRef,
+  onToggle,
+  variant = "conveyor",
+}) {
   const hotspot = hotspotPositions[variant];
 
   return (
@@ -57,6 +62,7 @@ export default function UnscramblerZoneOverlay({ active, onToggle, variant = "co
       </g>
 
       <g
+        ref={buttonRef}
         className={`machine-hotspot ${active ? "is-active" : ""}`}
         role="button"
         tabIndex="0"

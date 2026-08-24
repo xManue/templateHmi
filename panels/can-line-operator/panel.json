@@ -1,7 +1,7 @@
 {
   "id": "can-line-operator",
   "name": "Can Line Operator Panel",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Pannello operatore completo per linea handling con vista macchina, comandi manuali e gestione allarmi.",
   "entry": "src/App.jsx",
   "asset": "public/machine-line.png",
@@ -27,5 +27,13 @@
     "diagnostic-zone",
     "diagnostic-device",
     "formats"
+  ],
+  "linkedTemplates": [
+    {
+      "id": "machine-view-controls-popup",
+      "path": "linked/machine-view-controls-popup",
+      "parentPageId": "machine-view",
+      "trigger": "machine-part:select"
+    }
   ]
 }

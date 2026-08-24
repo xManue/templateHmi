@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import MainMenuPopupTemplate from "../linked/main-menu-popup/src/MainMenuPopupTemplate";
 import AlarmsMenuPopupTemplate from "../linked/alarms-menu-popup/src/AlarmsMenuPopupTemplate";
+import ManualsMenuPopupTemplate from "../linked/manuals-menu-popup/src/ManualsMenuPopupTemplate";
 
 const icons = {
   home: Home,
@@ -36,6 +37,8 @@ export default function OperatorShellTemplate({
   onMainMenuItemSelect,
   alarmMenuItems = [],
   onAlarmMenuItemSelect,
+  manualsMenuItems = [],
+  onManualsMenuItemSelect,
   children,
 }) {
   const [activeSection, setActiveSection] = useState(initialSection);
@@ -45,6 +48,7 @@ export default function OperatorShellTemplate({
   const shellRef = useRef(null);
   const mainMenuButtonRef = useRef(null);
   const alarmsMenuButtonRef = useRef(null);
+  const manualsMenuButtonRef = useRef(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
@@ -56,7 +60,11 @@ export default function OperatorShellTemplate({
 
     function closeOnEscape(event) {
       if (event.key === "Escape") {
-        const trigger = openMenu === "main" ? mainMenuButtonRef : alarmsMenuButtonRef;
+        const trigger = openMenu === "main"
+          ? mainMenuButtonRef
+          : openMenu === "alarms"
+            ? alarmsMenuButtonRef
+            : manualsMenuButtonRef;
         setOpenMenu(null);
         window.requestAnimationFrame(() => trigger.current?.focus());
       }
@@ -76,7 +84,9 @@ export default function OperatorShellTemplate({
       ? mainMenuItems
       : item.id === "alarms"
         ? alarmMenuItems
-        : [];
+        : item.id === "manuals"
+          ? manualsMenuItems
+          : [];
 
     if (linkedItems.length > 0) {
       const shellBox = shellRef.current?.getBoundingClientRect();
@@ -103,6 +113,12 @@ export default function OperatorShellTemplate({
     setOpenMenu(null);
     window.requestAnimationFrame(() => alarmsMenuButtonRef.current?.focus());
     onAlarmMenuItemSelect?.(item.id);
+  }
+
+  function selectManualsMenuItem(item) {
+    setOpenMenu(null);
+    window.requestAnimationFrame(() => manualsMenuButtonRef.current?.focus());
+    onManualsMenuItemSelect?.(item.id);
   }
 
   return (
@@ -133,7 +149,9 @@ export default function OperatorShellTemplate({
                 ? mainMenuButtonRef
                 : item.id === "alarms"
                   ? alarmsMenuButtonRef
-                  : undefined}
+                  : item.id === "manuals"
+                    ? manualsMenuButtonRef
+                    : undefined}
               className={`side-link ${active ? "active" : ""}`}
               style={{ "--item-color": item.color }}
               aria-current={active ? "page" : undefined}
@@ -141,12 +159,16 @@ export default function OperatorShellTemplate({
                 ? openMenu === "main"
                 : item.id === "alarms" && alarmMenuItems.length > 0
                   ? openMenu === "alarms"
-                  : undefined}
+                  : item.id === "manuals" && manualsMenuItems.length > 0
+                    ? openMenu === "manuals"
+                    : undefined}
               aria-controls={item.id === "main" && mainMenuItems.length > 0
                 ? "operator-shell-main-menu"
                 : item.id === "alarms" && alarmMenuItems.length > 0
                   ? "operator-shell-alarms-menu"
-                  : undefined}
+                  : item.id === "manuals" && manualsMenuItems.length > 0
+                    ? "operator-shell-manuals-menu"
+                    : undefined}
               onClick={(event) => selectSection(item, event.currentTarget)}
               key={item.id}
             >
@@ -171,6 +193,14 @@ export default function OperatorShellTemplate({
         open={openMenu === "alarms"}
         anchorY={popupAnchorY}
         onSelect={selectAlarmMenuItem}
+      />
+
+      <ManualsMenuPopupTemplate
+        id="operator-shell-manuals-menu"
+        items={manualsMenuItems}
+        open={openMenu === "manuals"}
+        anchorY={popupAnchorY}
+        onSelect={selectManualsMenuItem}
       />
 
       <main className="page-slot" aria-label="Area contenuti pagina">

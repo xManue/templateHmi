@@ -3,6 +3,7 @@ import OperatorShellTemplate from "./OperatorShellTemplate";
 import { connectionState, machineStates, navigationItems } from "./templateData";
 import { mainMenuItems } from "../linked/main-menu-popup/src/templateData";
 import { alarmMenuItems } from "../linked/alarms-menu-popup/src/templateData";
+import { manualsMenuItems } from "../linked/manuals-menu-popup/src/templateData";
 import AlarmListTemplate from "../../alarm-list/src/AlarmListTemplate";
 import {
   alarmListCopy,
@@ -27,6 +28,7 @@ export default function App() {
       userName="DefaultUser"
       mainMenuItems={mainMenuItems}
       alarmMenuItems={alarmMenuItems}
+      manualsMenuItems={manualsMenuItems}
       onAlarmMenuItemSelect={setAlarmMode}
       onSectionChange={selectSection}
     >

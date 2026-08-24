@@ -1,0 +1,25 @@
+{
+  "id": "operator-shell-manuals-menu",
+  "name": "Operator Shell Manuals Menu",
+  "version": "1.0.0",
+  "type": "navigation-popup",
+  "description": "Popup aperto dalla voce Manuals dell'Operator Shell per scegliere il gruppo di manuali.",
+  "entry": "src/ManualsMenuPopupTemplate.jsx",
+  "reference": "reference/manuals-menu-popup.png",
+  "relationship": {
+    "mode": "linked",
+    "parentTemplateId": "operator-shell",
+    "trigger": "navigation:manuals"
+  },
+  "inputs": {
+    "id": "string",
+    "items": "Array<{ id, label, icon }>",
+    "open": "boolean",
+    "anchorY": "number | undefined",
+    "onSelect": "(item) => void"
+  },
+  "editableFiles": [
+    "src/templateData.js",
+    "src/styles.css"
+  ]
+}
